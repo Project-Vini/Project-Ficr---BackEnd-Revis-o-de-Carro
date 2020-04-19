@@ -58,6 +58,36 @@ class CarController {
     }
   }
 
+  async update(req, res) {
+    try {
+      const veiculo = await Car.findById(req.params.id)
+      const model = veiculo
+      model.modelo = req.body.modelo,
+        model.marca = req.body.marca,
+        model.placa = req.body.placa,
+        model.ano = req.body.ano
+      model.save()
+      return res.status(200).send({ model, message: 'Editou Veiculo com Sucesso!' })
+    }
+    catch (error) {
+      return res.status(400).send({ message: 'Algo deu errado ao tentar alterar o Veiculo!' })
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      const veiculo = await Car.findOneAndDelete(req.params.id)
+      return res.status(200).send({
+        veiculo
+      })
+    }
+    catch (error) {
+      return res.status(400).send({
+        message: 'Algo deu errado ao deletar o Veiculo!'
+      })
+    }
+  }
+
 }
 
 module.exports = new CarController()

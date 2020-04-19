@@ -33,7 +33,14 @@ app.put('/cliente/edit/:id', ClienteController.update);
 app.post('/car', VeiculoController.post)
 app.get('/car', VeiculoController.list)
 app.get('/car/:id', VeiculoController.listOne)
-app.get('/car/modelo', VeiculoController.listQuery)
+app.put('/car/:id', VeiculoController.update)
+app.delete('/car/:id', VeiculoController.delete)
+// app.get('/car/modelo', VeiculoController.listQuery)
+
+
+// Rotas Serviços.
+
+
 
 
 module.exports = app;
