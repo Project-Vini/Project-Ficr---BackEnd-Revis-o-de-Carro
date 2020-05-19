@@ -1,6 +1,7 @@
 const User = require('../model/userSchema')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const Denuncias = require('../controller/DenunciaController')
 
 class UserController {
 
@@ -16,6 +17,9 @@ class UserController {
       const user = await User.create(req.body)
 
       user.password = undefined;
+      user.cpf = undefined;
+      user.telefone = undefined;
+      user.endereco = undefined;
 
       const token = jwt.sign({ id: user.id }, process.env.APP_TOKEN, {
         expiresIn: 86400,
