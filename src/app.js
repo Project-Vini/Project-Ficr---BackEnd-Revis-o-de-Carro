@@ -1,6 +1,7 @@
 const express = require('express')
 const router = require('./routes/AllRoutes')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 require('dotenv').config()
 
 class App {
@@ -12,7 +13,8 @@ class App {
   }
 
   middlewares() {
-    this.express.use(express.json())
+    this.express.use(bodyParser.json())
+    this.express.use(bodyParser.urlencoded({ extended: true }))
   }
 
   routes() {
